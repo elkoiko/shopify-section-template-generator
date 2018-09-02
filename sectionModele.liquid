@@ -1,0 +1,47 @@
+<div class="Container" id="section-{{ section.id }}">
+  <div class="PageContent Rte">
+  	{% if section.settings.hide_page_content == false and section.settings.page_content_position == "top" %}
+	    {{ page.content }}
+    {% endif %}
+      
+      {% comment %}
+        SOME CODE WITH SECTION BLOCKS
+      {% endcomment%}
+
+   	{% if section.settings.hide_page_content == false and section.settings.page_content_position == "bottom" %}
+	    {{ page.content }}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom page %s", {% comment %} %s HERE WILL BE REPLACED {% endcomment %}
+  "settings": [
+  	{
+  		"type": "header",
+  		"content": "Page content"
+  	},
+  	{
+  		"id": "hide_page_content",
+  		"label": "Hide page content",
+  		"type": "checkbox",
+  		"default": true
+  	},
+  	{
+  		"type": "select",
+  		"id": "page_content_position",
+  		"label": "Page content position",
+  		"options": [
+  			{ "value": "top", "label": "Before blocks" },
+  			{ "value": "bottom", "label": "After blocks" }
+  		]
+  	}
+  ],
+  "blocks": [
+    {% comment %}
+        SOME JSON TO CREATE SECTION BLOCKS
+    {% endcomment %}
+    ]
+}
+{% endschema %}
